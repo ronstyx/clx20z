@@ -1,0 +1,112 @@
+<head>
+  <meta charset="utf-8">
+<script
+  id="purecloud-webchat-js"
+  type="text/javascript"
+  src="https://apps.mypurecloud.com/webchat/jsapi-v1.js"
+  region="us-east-1"
+  org-guid="07b4f3bc-fa97-4938-b25a-39cb08baed6e"
+  deployment-key="b81ccf2f-69fa-495f-b22e-e2b44d0bd2a4"
+></script>
+</head>
+
+<body>
+  <h1>Test chat widget v1 - Popup Block / click event Listener</h1>
+  <div>
+    <p>
+      Test.
+    </p>
+
+  </div>
+  <form id="chatForm">
+    <h3>Participant Information- local</h3>
+
+    <table class="webchat-config">
+      <tbody>
+        <tr>
+          <th>First Name:</th>
+          <td><input type="text" id="firstName" value="John" /></td>
+        </tr>
+        <tr>
+          <th>Last Name:</th>
+          <td><input type="text" id="lastName" value="Doe" /></td>
+        </tr>
+        <tr>
+          <th>Agent Email:</th>
+          <td><input type="text" id="agent-email" value="alex.agent@example.com" /></td>
+        </tr>
+      </tbody>
+    </table>
+    <button type="button" id="chat-button">Start Chat</button>
+  </form>
+  <script type="text/javascript">
+    let chatConfig = {
+      "webchatAppUrl": "https://apps.mypurecloud.com/webchat",
+      "webchatServiceUrl": "https://realtime.mypurecloud.com:443",
+      "orgId": "17907",
+      "orgGuid": "07b4f3bc-fa97-4938-b25a-39cb08baed6e",
+      "orgName": "psglobalqa",
+      "queueName": "MF_ASCMv1",
+      "priority": "0",
+      "logLevel": "DEBUG",
+      "locale": "en",
+      "data": {
+        "firstName": "",
+        "lastName": "",
+        "addressStreet": "",
+        "addressCity": "",
+        "addressPostalCode": "",
+        "addressState": "",
+        "phoneNumber": "",
+        "customField1Label": "",
+        "customField1": "",
+        "customField2Label": "",
+        "customField2": "",
+        "customField3Label": "",
+        "customField3": "",
+        "email": ""
+      },
+      "companyLogo": {
+        "width": 600,
+        "height": 149,
+        "url": "https://d3a63qt71m2kua.cloudfront.net/developer-tools/1563/assets/images/PC-blue-nomark.png"
+      },
+      "companyLogoSmall": {
+        "width": 25,
+        "height": 25,
+        "url": "https://d3a63qt71m2kua.cloudfront.net/developer-tools/1563/assets/images/companylogo.png"
+      },
+      "agentAvatar": {
+        "width": 462,
+        "height": 462,
+        "url": "https://d3a63qt71m2kua.cloudfront.net/developer-tools/1563/assets/images/agent.jpg"
+      },
+      "welcomeMessage": "Thanks for chatting using the dev tools chat page. Slow? email us \devtool@gmail.com\." ,
+      "cssClass": "webchat-frame",
+      "css": {
+        "width": "100%",
+        "height": "100%"
+      },
+      "cobrowseConfig": {
+         "deploymentKey": "80k4ndmc3GDXDKLgxxB2VRSu48ZmXIZY"
+      }      
+    };
+    
+    const startChatButton = document.querySelector("#chat-button");
+    startChatButton.onclick = function() {
+      ININ.webchat.create(chatConfig, function(err, webchat) {
+        if (err) {
+          console.error(err);
+          throw err;
+        }
+
+        webchat.renderPopup({
+          width: 400,
+          height: 400,
+          title: 'Chat'
+        });
+      });
+    }
+
+  </script>
+</body>
